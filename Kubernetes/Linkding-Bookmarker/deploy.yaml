@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linkding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linkding
+  template:
+    metadata:
+      labels:
+        app: linkding
+    spec:
+      containers:
+        - name: linkding
+          image: sissbruecker/linkding:1.44.1
+          ports:
+           - containerPort: 9090
+          volumeMounts:
+           - name: linkding-data
+             mountPath: /etc/linkding/data
+      volumes:
+        - name: linkding-data
+          hostPath:
+            # IMPORTANT: This path must exist or be creatable on the K8s Node/VM.
+            path: /tmp/linkding-data
+            type: DirectoryOrCreate
