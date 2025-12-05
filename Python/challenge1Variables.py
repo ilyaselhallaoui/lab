@@ -16,6 +16,14 @@
 # So if I type red as my favorite color, it will print “Your favorite color is red”.
 
 # WORK OUT YOUR SOLUTION HERE
+# My own solution:
 print("What's your favourite color?")
 color=input()
 print("Your favourite color is " + color)
+
+# The courses solution:
+
+print("What's your favourite color?")
+my_input = input()
+print("Your favourite color is " + my_input)
+
