@@ -18,5 +18,3 @@ spec:
       containers:
       - image: httpd
         name: httpd
-        resources: {}
-status: {}
