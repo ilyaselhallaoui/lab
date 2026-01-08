@@ -22,7 +22,6 @@ services:
     ports:
       - "${N8N_PORT:-5678}:5678"
     environment:
-      # DB
       DB_TYPE: postgresdb
       DB_POSTGRESDB_HOST: postgres
       DB_POSTGRESDB_PORT: 5432
@@ -30,21 +29,17 @@ services:
       DB_POSTGRESDB_USER: ${POSTGRES_USER}
       DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
 
-      # n8n basics
       N8N_HOST: ${N8N_HOST:-localhost}
       N8N_PORT: 5678
       N8N_PROTOCOL: ${N8N_PROTOCOL:-http}
       NODE_ENV: production
 
-      # Keep this stable across restarts so stored credentials remain readable
+      
       N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
 
-      # Timezone (optional)
       GENERIC_TIMEZONE: ${GENERIC_TIMEZONE:-Europe/Berlin}
       TZ: ${TZ:-Europe/Berlin}
 
-      # Optional, but helpful if you later expose via reverse proxy
-      # WEBHOOK_URL: ${WEBHOOK_URL:-http://localhost:${N8N_PORT:-5678}/}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:
