@@ -18,5 +18,12 @@ spec:
       containers:
         - image: ghcr.io/mealie-recipes/mealie:v3.9.1
           name: mealie
-          ports:
+          persistentVolumeClaims:
             - containerPort: 9000
+          volumeMounts:
+            - mountPath: /app/data
+              name: mealie-pvc
+      volumes:
+        - name: mealie-pvc
+          persistentVolumeClaim:
+            claimName: mealie-pvc

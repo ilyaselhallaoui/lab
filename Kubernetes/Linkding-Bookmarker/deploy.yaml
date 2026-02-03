@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: linkding
   name: linkding
 spec:
   replicas: 1
@@ -13,15 +15,7 @@ spec:
         app: linkding
     spec:
       containers:
-        - name: linkding
-          image: sissbruecker/linkding:1.44.1
-          ports:
-           - containerPort: 9090
-          volumeMounts:
-           - name: linkding-data
-             mountPath: /etc/linkding/data
-      volumes:
-        - name: linkding-data
-          hostPath:
-            path: /tmp/linkding-data
-            type: DirectoryOrCreate
+      - image: sissbruecker/linkding:latest
+        name: linkding
+        ports:
+            - containerPort: 8000
