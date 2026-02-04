@@ -5,10 +5,11 @@ metadata:
     app: linkding
   name: linkding
 spec:
+  type: LoadBalancer
   ports:
   - port: 8000
     protocol: TCP
-    targetPort: 8000
+    targetPort: 9090
   selector:
     app: linkding
 status:
