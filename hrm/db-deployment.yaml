@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-db
+  namespace: hr-system
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15
+        env:
+        - name: POSTGRES_DB
+          value: horilla_db
+        - name: POSTGRES_USER
+          value: horilla_user
+        - name: POSTGRES_PASSWORD
+          value: "securepassword123" # In Produktion: Secrets nutzen!
+        ports:
+        - containerPort: 5432

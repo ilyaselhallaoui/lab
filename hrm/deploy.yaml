@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: horilla-app
+  namespace: hr-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: horilla
+  template:
+    metadata:
+      labels:
+        app: horilla
+    spec:
+      containers:
+      - name: horilla
+        image: horilla/horilla:latest # Offizielles Image
+        env:
+        - name: DB_ENGINE
+          value: "django.db.backends.postgresql"
+        - name: DB_NAME
+          value: "horilla_db"
+        - name: DB_USER
+          value: "horilla_user"
+        - name: DB_PASSWORD
+          value: "securepassword123"
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_PORT
+          value: "5432"
+        ports:
+        - containerPort: 8000
